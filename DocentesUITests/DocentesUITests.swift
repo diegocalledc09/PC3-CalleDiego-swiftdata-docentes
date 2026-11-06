@@ -83,7 +83,9 @@ final class DocentesUITests: XCTestCase {
         app.staticTexts["Jaime Gomez"].tap()
         fill("specialty", "SwiftUI Senior")
         dismissKeyboard()
-        app.switches["Active"].tap()
+        let activeSwitch = app.switches["Active"]
+        activeSwitch.coordinate(withNormalizedOffset: CGVector(dx: 0.93, dy: 0.5)).tap()
+        XCTAssertEqual(activeSwitch.value as? String, "0")
         capture("05-edicion")
         app.buttons["Save"].tap()
         XCTAssertTrue(app.staticTexts["SwiftUI Senior"].waitForExistence(timeout: 5))

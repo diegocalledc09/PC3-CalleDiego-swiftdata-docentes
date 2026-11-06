@@ -39,5 +39,5 @@ jobs:
           retention-days: 1
           path: |
             build.log
-            attachments
-            TestResults.xcresult
+            attachments/*.png
+            attachments/manifest.json
