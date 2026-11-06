@@ -1,0 +1,36 @@
+name: Verificar iOS
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/ios.yml'
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: macos-15
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compilar para el simulador
+        run: |
+          set -o pipefail
+          xcodebuild -project apple_lab12_pract03_SwiftData.xcodeproj -scheme apple_lab12_pract03_SwiftData -configuration Debug -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' -derivedDataPath build CODE_SIGNING_ALLOWED=NO build | tee build.log
+      - name: Abrir la app en un iPhone simulado
+        run: |
+          DEVICE=$(xcrun simctl list devices available -j | python3 -c 'import json,sys; d=json.load(sys.stdin); print(next(x["udid"] for k,v in d["devices"].items() if "iOS" in k for x in v if "iPhone" in x["name"]))')
+          xcrun simctl boot "$DEVICE"
+          xcrun simctl bootstatus "$DEVICE" -b
+          xcrun simctl install "$DEVICE" build/Build/Products/Debug-iphonesimulator/apple_lab12_pract03_SwiftData.app
+          xcrun simctl launch "$DEVICE" pe.edu.tecsup.dma.apple-lab12-pract03-SwiftData
+          sleep 5
+          xcrun simctl io "$DEVICE" screenshot simulator.png
+      - name: Guardar evidencia
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidencia-ios
+          retention-days: 1
+          path: |
+            build.log
+            simulator.png
