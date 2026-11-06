@@ -4,6 +4,10 @@ on:
   push:
     paths:
       - '.github/workflows/ios.yml'
+      - 'DocentesUITests/**'
+      - 'apple_lab12_pract03_SwiftData/**'
+      - 'apple_lab12_pract03_SwiftData.xcodeproj/**'
+      - 'scripts/export_screenshots.py'
 permissions:
   contents: read
 jobs:
@@ -12,19 +16,21 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-      - name: Compilar para el simulador
-        run: |
-          set -o pipefail
-          xcodebuild -project apple_lab12_pract03_SwiftData.xcodeproj -scheme apple_lab12_pract03_SwiftData -configuration Debug -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' -derivedDataPath build CODE_SIGNING_ALLOWED=NO build | tee build.log
-      - name: Abrir la app en un iPhone simulado
+      - name: Preparar iPhone
         run: |
           DEVICE=$(xcrun simctl list devices available -j | python3 -c 'import json,sys; d=json.load(sys.stdin); print(next(x["udid"] for k,v in d["devices"].items() if "iOS" in k for x in v if "iPhone" in x["name"]))')
+          echo "DEVICE=$DEVICE" >> "$GITHUB_ENV"
           xcrun simctl boot "$DEVICE"
           xcrun simctl bootstatus "$DEVICE" -b
-          xcrun simctl install "$DEVICE" build/Build/Products/Debug-iphonesimulator/apple_lab12_pract03_SwiftData.app
-          xcrun simctl launch "$DEVICE" pe.edu.tecsup.dma.apple-lab12-pract03-SwiftData
-          sleep 5
-          xcrun simctl io "$DEVICE" screenshot simulator.png
+          xcrun simctl status_bar "$DEVICE" override --time '9:41' --batteryState charged --batteryLevel 100
+      - name: Probar CRUD y persistencia con XCUITest
+        run: |
+          set -o pipefail
+          xcodebuild test -project apple_lab12_pract03_SwiftData.xcodeproj -scheme Docentes -configuration Debug -destination "platform=iOS Simulator,id=$DEVICE" -parallel-testing-enabled NO -resultBundlePath TestResults.xcresult CODE_SIGNING_ALLOWED=NO | tee build.log
+      - name: Exportar capturas
+        if: always()
+        run: |
+          xcrun xcresulttool export attachments --path TestResults.xcresult --output-path attachments
       - name: Guardar evidencia
         if: always()
         uses: actions/upload-artifact@v4
@@ -33,4 +39,5 @@ jobs:
           retention-days: 1
           path: |
             build.log
-            simulator.png
+            attachments
+            TestResults.xcresult

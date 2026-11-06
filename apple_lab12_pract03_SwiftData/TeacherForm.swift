@@ -34,15 +34,19 @@ struct TeacherForm: View {
             Form {
                 Section("Personal Information") {
                     TextField("First Name", text: $firstName)
+                        .accessibilityIdentifier("firstName")
                         .textContentType(.givenName)
                     TextField("Last Name", text: $lastName)
+                        .accessibilityIdentifier("lastName")
                         .textContentType(.familyName)
                     TextField("Email", text: $email)
+                        .accessibilityIdentifier("email")
                         .textContentType(.emailAddress)
                         .keyboardType(.emailAddress)
                         .textInputAutocapitalization(.never)
                         .autocorrectionDisabled()
                     TextField("Phone", text: $phone)
+                        .accessibilityIdentifier("phone")
                         .textContentType(.telephoneNumber)
                         .keyboardType(.phonePad)
                     DatePicker("Date of Birth", selection: $birthDate, in: ...Date.now, displayedComponents: .date)
@@ -50,6 +54,7 @@ struct TeacherForm: View {
 
                 Section("Professional Information") {
                     TextField("Specialty", text: $specialty)
+                        .accessibilityIdentifier("specialty")
                     DatePicker("Hire Date", selection: $hireDate, displayedComponents: .date)
                     Toggle("Active", isOn: $isActive)
                 }
@@ -62,6 +67,7 @@ struct TeacherForm: View {
                     }
                 }
             }
+            .scrollDismissesKeyboard(.immediately)
             .navigationTitle(teacher == nil ? "Add Teacher" : "Edit Teacher")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

@@ -6,6 +6,56 @@
 	objectVersion = 77;
 	objects = {
 
+        A10000000000000000000001 = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = DocentesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+        A10000000000000000000002 = {isa = PBXFileSystemSynchronizedRootGroup; path = DocentesUITests; sourceTree = "<group>"; };
+        A10000000000000000000003 = {
+            isa = PBXNativeTarget;
+            buildConfigurationList = A10000000000000000000004;
+            buildPhases = (A10000000000000000000005, A10000000000000000000006, A10000000000000000000007,);
+            buildRules = ();
+            dependencies = (A10000000000000000000010,);
+            fileSystemSynchronizedGroups = (A10000000000000000000002,);
+            name = DocentesUITests;
+            productName = DocentesUITests;
+            productReference = A10000000000000000000001;
+            productType = "com.apple.product-type.bundle.ui-testing";
+        };
+        A10000000000000000000004 = {isa = XCConfigurationList; buildConfigurations = (A10000000000000000000008, A10000000000000000000009,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+        A10000000000000000000005 = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+        A10000000000000000000006 = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+        A10000000000000000000007 = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+        A10000000000000000000010 = {isa = PBXTargetDependency; target = 85CFD8622DED47BE009A0D94; targetProxy = A10000000000000000000011; };
+        A10000000000000000000011 = {isa = PBXContainerItemProxy; containerPortal = 85CFD85B2DED47BE009A0D94; proxyType = 1; remoteGlobalIDString = 85CFD8622DED47BE009A0D94; remoteInfo = apple_lab12_pract03_SwiftData; };
+        A10000000000000000000008 = {
+            isa = XCBuildConfiguration;
+            buildSettings = {
+                CODE_SIGN_STYLE = Automatic;
+                GENERATE_INFOPLIST_FILE = YES;
+                IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+                PRODUCT_BUNDLE_IDENTIFIER = "pe.edu.tecsup.dma.DocentesUITests";
+                PRODUCT_NAME = "$(TARGET_NAME)";
+                SWIFT_VERSION = 5.0;
+                TARGETED_DEVICE_FAMILY = "1,2";
+                TEST_TARGET_NAME = apple_lab12_pract03_SwiftData;
+            };
+            name = Debug;
+        };
+        A10000000000000000000009 = {
+            isa = XCBuildConfiguration;
+            buildSettings = {
+                CODE_SIGN_STYLE = Automatic;
+                GENERATE_INFOPLIST_FILE = YES;
+                IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+                PRODUCT_BUNDLE_IDENTIFIER = "pe.edu.tecsup.dma.DocentesUITests";
+                PRODUCT_NAME = "$(TARGET_NAME)";
+                SWIFT_VERSION = 5.0;
+                TARGETED_DEVICE_FAMILY = "1,2";
+                TEST_TARGET_NAME = apple_lab12_pract03_SwiftData;
+            };
+            name = Release;
+        };
+
+
 /* Begin PBXBuildFile section */
 		85CFD8772DED47D1009A0D94 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 85CFD8762DED47CA009A0D94 /* README.md */; };
 /* End PBXBuildFile section */
@@ -42,6 +92,7 @@
 		85CFD85A2DED47BE009A0D94 = {
 			isa = PBXGroup;
 			children = (
+                A10000000000000000000002,
 				85CFD8782DED47E3009A0D94 /* images */,
 				85CFD8762DED47CA009A0D94 /* README.md */,
 				85CFD8652DED47BE009A0D94 /* apple_lab12_pract03_SwiftData */,
@@ -53,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				85CFD8632DED47BE009A0D94 /* apple_lab12_pract03_SwiftData.app */,
+                A10000000000000000000001,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -112,6 +164,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+                A10000000000000000000003,
 				85CFD8622DED47BE009A0D94 /* apple_lab12_pract03_SwiftData */,
 			);
 		};
