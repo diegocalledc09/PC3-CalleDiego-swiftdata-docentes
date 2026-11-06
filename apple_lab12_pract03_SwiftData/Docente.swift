@@ -1,6 +1,7 @@
 import Foundation
 import SwiftData
 
+// @Model integra la observación de cambios y la persistencia de SwiftData.
 @Model
 final class Docente {
     var firstName: String

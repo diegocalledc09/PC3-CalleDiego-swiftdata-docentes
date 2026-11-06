@@ -3,6 +3,7 @@ import SwiftUI
 
 struct ContentView: View {
     @Environment(\.modelContext) private var context
+    // La consulta mantiene la lista sincronizada con los docentes guardados.
     @Query(sort: [SortDescriptor(\Docente.firstName), SortDescriptor(\Docente.lastName)])
     private var teachers: [Docente]
 

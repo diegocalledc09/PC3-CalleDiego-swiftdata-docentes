@@ -7,6 +7,7 @@ struct apple_lab12_pract03_SwiftDataApp: App {
         WindowGroup {
             ContentView()
         }
+        // Comparte el almacenamiento persistente con las vistas de la aplicación.
         .modelContainer(for: Docente.self)
     }
 }

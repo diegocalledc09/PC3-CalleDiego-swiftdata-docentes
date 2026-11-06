@@ -44,7 +44,7 @@ final class DocentesUITests: XCTestCase {
         dismissKeyboard()
     }
 
-    func testLaboratorioCRUD() {
+    func testLaboratorioCRUD() throws {
         capture("01-inicio")
         addTeacher(first: "Jaime", last: "Gomez", email: "jaime@example.com", specialty: "Java Senior")
         XCTAssertTrue(app.buttons["Save"].isEnabled)
@@ -102,8 +102,10 @@ final class DocentesUITests: XCTestCase {
         XCTAssertEqual(app.switches["Active"].value as? String, "0")
         app.buttons["Delete Teacher"].tap()
         capture("07-confirmacion-borrado")
-        let deleteButtons = app.buttons.matching(identifier: "Delete Teacher")
-        deleteButtons.element(boundBy: deleteButtons.count - 1).tap()
+        let confirmDelete = try XCTUnwrap(
+            app.buttons.matching(identifier: "Delete Teacher").allElementsBoundByIndex.first { $0.isHittable }
+        )
+        confirmDelete.tap()
         XCTAssertTrue(app.navigationBars["Teachers"].waitForExistence(timeout: 5))
         XCTAssertFalse(app.staticTexts["Jaime Gomez"].exists)
         XCTAssertTrue(app.staticTexts["Juan Leon"].exists)

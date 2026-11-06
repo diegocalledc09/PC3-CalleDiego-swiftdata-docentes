@@ -6,6 +6,7 @@ struct TeacherForm: View {
     @Environment(\.modelContext) private var context
 
     private let teacher: Docente?
+    // El borrador local permite cancelar sin modificar el docente persistente.
     @State private var firstName: String
     @State private var lastName: String
     @State private var email: String
@@ -123,6 +124,7 @@ struct TeacherForm: View {
         saveAndDismiss()
     }
 
+    // Se cierra el formulario solo después de guardar correctamente.
     private func saveAndDismiss() {
         do {
             try context.save()
