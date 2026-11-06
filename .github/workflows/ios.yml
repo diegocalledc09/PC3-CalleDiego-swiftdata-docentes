@@ -1,13 +1,6 @@
 name: Verificar iOS
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - '.github/workflows/ios.yml'
-      - 'DocentesUITests/**'
-      - 'apple_lab12_pract03_SwiftData/**'
-      - 'apple_lab12_pract03_SwiftData.xcodeproj/**'
-      - 'scripts/export_screenshots.py'
 permissions:
   contents: read
 jobs:

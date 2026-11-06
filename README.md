@@ -1,31 +1,25 @@
-# CRUD de docentes con SwiftData
+# PC3 — CRUD de docentes
 
-Abre `apple_lab12_pract03_SwiftData.xcodeproj` en Xcode y selecciona un simulador con iOS 18.2 o posterior.
+Diego Calle · SwiftUI y SwiftData
 
-Proyecto base: [Laboratorio de Tecsup](https://github.com/jgomezz/apple_lab12_pract03_SwiftData).
+Registro, listado, búsqueda, edición y eliminación de docentes. Incluye a Bryan Pareja y Renato Usnayo como datos iniciales. Los cambios se conservan al cerrar y abrir la app.
 
-### Laboratorio Calificado 3 : CRUD Docente con SwiftData
+| Registro | Listado |
+| --- | --- |
+| <img src="docs/screenshots/02-registro.png" width="260" alt="Registro de Bryan Pareja"> | <img src="docs/screenshots/03-listado.png" width="260" alt="Bryan Pareja y Renato Usnayo"> |
 
-### Implementar
+| Búsqueda | Edición |
+| --- | --- |
+| <img src="docs/screenshots/04-busqueda.png" width="260" alt="Búsqueda de Bryan Pareja"> | <img src="docs/screenshots/05-edicion.png" width="260" alt="Edición de especialidad y estado"> |
 
-#### 1.- Página principal y creación de docente
+| Confirmación de borrado | Borrado deslizando |
+| --- | --- |
+| <img src="docs/screenshots/07-confirmacion-borrado.png" width="260" alt="Confirmación para eliminar a Bryan"> | <img src="docs/screenshots/08-borrado-deslizando.png" width="260" alt="Eliminar a Renato deslizando"> |
 
-<p float="left">
-  <img src="./images/main.png" width="24%" alt="Calculator Screen" hspace="20" />
-  <img src="./images/create.png" width="25%" alt="Results Screen" hspace="20" />
-</p>
+Capturas de la app ejecutándose en un iPhone 16 Pro simulado. Datos de ejemplo.
 
-#### 2.- Lista y buscar de docentes
+Abrir `apple_lab12_pract03_SwiftData.xcodeproj` en Xcode con un simulador de iOS 18.2 o posterior. Seleccionar el esquema `Docentes`.
 
-<p float="left">
-  <img src="./images/list.png" width="25%" alt="Calculator Screen" hspace="20" />
-  <img src="./images/search.png" width="25%" alt="Results Screen" hspace="20" />
-</p>
+Las pruebas de GitHub Actions se ejecutan manualmente.
 
-#### 2.- Edición y borrado de docente
-
-<p float="left">
-  <img src="./images/edit.png" width="25%" alt="Calculator Screen" hspace="20" />
-  <img src="./images/delete.png" width="25%" alt="Results Screen" hspace="20" />
-</p>
-
+[Prueba de funciones y persistencia](https://github.com/diegocalledc09/PC3-CalleDiego-swiftdata-docentes/actions/runs/42161991505) · [Proyecto base del profesor](https://github.com/jgomezz/apple_lab12_pract03_SwiftData)

@@ -8,6 +8,13 @@ final class DocentesUITests: XCTestCase {
         app.launchArguments = ["-AppleLanguages", "(en)", "-AppleLocale", "en_US"]
         app.launch()
         XCTAssertTrue(app.navigationBars["Teachers"].waitForExistence(timeout: 15))
+        // Las pruebas manuales usan estos registros de ejemplo en el simulador.
+        for name in ["Bryan Pareja", "Renato Usnayo"] {
+            if app.staticTexts[name].exists {
+                app.cells.containing(.staticText, identifier: name).firstMatch.swipeLeft()
+                app.buttons["Delete"].tap()
+            }
+        }
     }
 
     private func capture(_ name: String) {
